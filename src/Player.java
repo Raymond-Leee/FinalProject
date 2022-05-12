@@ -1,6 +1,7 @@
 public class Player {
     private String character;
-    private String name;
+    private String username;
+    private String inventory;
     private int health;
     private int energy;
     private int armour;
