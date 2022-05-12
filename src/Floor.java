@@ -29,12 +29,10 @@ public class Floor {
     }
 
     public void generateNumberOfRooms() {
-        int roomNumber = (int) (Math.random() * 6) + 7;
-        numberOfRooms = roomNumber;
+        numberOfRooms = (int) (Math.random() * 6) + 7;
     }
 
     public void generateEndRoomNumber() {
-        int endRoomNum = (int) (Math.random() * numberOfRooms) + 1;
-        endRoomLocation = endRoomNum;
+        endRoomLocation = (int) (Math.random() * numberOfRooms) + 1;
     }
 }
