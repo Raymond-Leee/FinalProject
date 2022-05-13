@@ -4,7 +4,7 @@ public class Floor {
     private int numberOfRooms;
     private int endRoomLocation;
 
-    public void generateFloor() {
+    public Floor() {
         int num = (int) (Math.random() * 5) + 1;
         if (num == 1) {
             floorName = "The Silver Forest";
@@ -26,13 +26,20 @@ public class Floor {
             floorName = "The Reservoir";
             description = "The only refuge untouched by the Scourge. Those who remain fight to see the next day.";
         }
+        numberOfRooms = (int) (Math.random() * 6) + 7;
     }
 
-    public void generateNumberOfRooms() {
-        numberOfRooms = (int) (Math.random() * 6) + 7;
+    public int getNumberOfRooms() {
+        return numberOfRooms;
     }
 
     public void generateEndRoomNumber() {
         endRoomLocation = (int) (Math.random() * numberOfRooms) + 1;
+    }
+
+    public String getFloorInfo() {
+        return "Floor: " + floorName +
+               "\nDescription: " + description +
+               "\nNumber of rooms: " + getNumberOfRooms() + "\n";
     }
 }

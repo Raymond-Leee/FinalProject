@@ -5,7 +5,7 @@ public class Player {
     private int health;
     private int energy;
     private int armour;
-    private int damage;
+    private int attack;
 
 
 }
