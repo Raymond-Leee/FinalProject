@@ -8,7 +8,7 @@ public class Floor {
         int num = (int) (Math.random() * 5) + 1;
         if (num == 1) {
             floorName = "The Silver Forest";
-            description = "The humble beginnings of a young adventurer. The luscious woodland's silence broken only by the call of monsters.";
+            description = "The humble beginnings of a new adventure. The luscious woodland's silence broken only by the call of monsters.";
         }
         if (num == 2) {
             floorName = "The Howling Peak";
@@ -38,8 +38,8 @@ public class Floor {
     }
 
     public String getFloorInfo() {
-        return "Floor: " + floorName +
-               "\nDescription: " + description +
-               "\nNumber of rooms: " + getNumberOfRooms() + "\n";
+        return "You've reached " + floorName +
+               "\n" + description +
+               "\n" + getNumberOfRooms() + " rooms await you.\n";
     }
 }

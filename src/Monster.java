@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Monster {
-    private String[] monster = new String[]{"Slime", "Wolf", "Skeleton", "Goblin", "Mummy", "Ghoul", "Stone Golem", "Spider", "Sand Worm", "Human"};
+    private String[] monster = new String[]{"Slime", "Wolf", "Skeleton", "Goblin", "Mummy", "Ghoul", "Stone Golem", "Spider", "Sand Worm", "Hunter"};
     private String monsterType;
     private String monsterTier; // Normal or Elite
     private int monsterHealth;
@@ -37,16 +37,37 @@ public class Monster {
             /* attack player
              * attack hits armour first, remaining attack hits player directly
              */
+            System.out.println(monsterTier + " " + monsterType + " attacked for " + monsterAttack + " damage!" + "\n");
         }
         if (num == 2) {
             /* block (+5 to +7 defence for normal / +8 to +10 defence for elite)
              * block resets to base value at the start of a new turn
              */
+            if (monsterTier.equals("Elite")) {
+                int block = (int) (Math.random() * 3) + 8;
+                monsterArmour += block;
+                System.out.println(monsterTier + " " + monsterType + " gained an additional " + block + " block!" + "\n");
+            }
+            else {
+                int block = (int) (Math.random() * 3) + 5;
+                monsterArmour += block;
+                System.out.println(monsterTier + " " + monsterType + " gained an additional " + block + " block!" + "\n");
+            }
         }
         if (num == 3) {
             /* charge attack (+2 to +4 damage for normal / +5 to +7 damage for elite)
              * attack resets to base value at the start of a new turn
              */
+            if (monsterTier.equals("Elite")) {
+                int attack = (int) (Math.random() * 3) + 5;
+                monsterAttack += attack;
+                System.out.println(monsterTier + " " + monsterType + " gained an additional " + attack + " attack!" + "\n");
+            }
+            else {
+                int attack = (int) (Math.random() * 3) + 2;
+                monsterAttack += attack;
+                System.out.println(monsterTier + " " + monsterType + " gained an additional " + attack + " attack!" + "\n");
+            }
         }
     }
 
