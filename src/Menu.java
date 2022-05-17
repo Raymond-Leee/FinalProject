@@ -3,9 +3,8 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner user = new Scanner(System.in);
-        System.out.println("Welcome to [Placeholder]!");
-        System.out.println("Would you like to play?");
-        String input = user.nextLine();
+        Player play = new Player("John", "John");
+        System.out.println(play.getInventoryInfo());
 
         /*
         Monster the = new Monster();
