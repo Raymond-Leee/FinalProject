@@ -1,15 +1,21 @@
 public class Player {
     private String username;
     private String character;
+    private String[] characterList = new String[]{"Rogue",
+                                                  "Knight",
+                                                  "Shifter"};
+    private String[] characterDescription = new String[]{"A lone wolf, the Rogue specialises in being able to do many things at once",
+                                                         "A protector of the illustrious Nilian Empire, the Knight specialises in hitting hard",
+                                                         "A mysterious outsider, the Shifter is able to inherit the stat buffs of any character"};
     private String[] inventory;
     private int health;
     private int energy;
     private int armour;
     private int attack;
 
-    public Player(String username, String character) {
+    public Player(String username) {
         this.username = username;
-        this.character = character;
+        this.character = "";
         inventory = new String[5];
         for (int i = 0; i < inventory.length; i++) {
             if (i == 0) {

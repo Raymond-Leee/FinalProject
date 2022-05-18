@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner user = new Scanner(System.in);
-        Player play = new Player("John", "John");
+        Player play = new Player("John");
         System.out.println(play.getInventoryInfo());
         System.out.println(play.getPlayerInfo());
 

@@ -1,7 +1,16 @@
 import java.util.Arrays;
 
 public class Monster {
-    private String[] monster = new String[]{"Slime", "Wolf", "Skeleton", "Goblin", "Mummy", "Ghoul", "Stone Golem", "Spider", "Sand Worm", "Hunter"};
+    private String[] monster = new String[]{"Slime",
+                                            "Wolf",
+                                            "Skeleton",
+                                            "Goblin",
+                                            "Mummy",
+                                            "Ghoul",
+                                            "Stone Golem",
+                                            "Spider",
+                                            "Sand Worm",
+                                            "Hunter"};
     private String monsterType;
     private String monsterTier; // Normal or Elite
     private int monsterHealth;
