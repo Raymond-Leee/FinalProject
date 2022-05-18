@@ -63,23 +63,27 @@ public class Player {
     }
 
     public String getInventoryInfo() {
+        Item item = new Item();
         String inv = "Inventory\n";
         for (int i = 0; i < inventory.length; i++) {
             if (i == 0) {
-                inv += "Weapon: " + inventory[i] + "\n";
+                inv += item.getWeaponInfo(inventory[i]);
             }
             else if (i == 1) {
-                inv += "Armour: " + inventory[i] + "\n";
+                inv += item.getArmourInfo(inventory[i]);
             }
             else {
-                inv += "Item: " + inventory[i] + "\n";
+                inv += item.getItemInfo(inventory[i]);
             }
         }
         return inv;
     }
 
-    //public String getPlayerInfo() {
-      //  String player = username + "\n";
-
-    //}
+    public String getPlayerInfo() {
+      return "Player: " + username +
+             "\nCharacter: " + character +
+             "\nHealth: " + health +
+             "\nArmour: " + armour +
+             "\nAttack: " + attack;
+    }
 }

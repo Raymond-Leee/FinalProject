@@ -5,6 +5,7 @@ public class Menu {
         Scanner user = new Scanner(System.in);
         Player play = new Player("John", "John");
         System.out.println(play.getInventoryInfo());
+        System.out.println(play.getPlayerInfo());
 
         /*
         Monster the = new Monster();
