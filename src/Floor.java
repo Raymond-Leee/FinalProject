@@ -1,7 +1,6 @@
 public class Floor {
     private String floorName;
     private String description;
-    private int numberOfRooms;
     private int endRoomLocation;
 
     public Floor() {
@@ -26,20 +25,10 @@ public class Floor {
             floorName = "The Reservoir";
             description = "The only refuge untouched by the Scourge. Those who remain fight to see the next day.";
         }
-        numberOfRooms = (int) (Math.random() * 6) + 7;
-    }
-
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public void generateEndRoomNumber() {
-        endRoomLocation = (int) (Math.random() * numberOfRooms) + 1;
     }
 
     public String getFloorInfo() {
         return "You've reached " + floorName +
-               "\n" + description +
-               "\n" + getNumberOfRooms() + " rooms await you.\n";
+               "\n" + description;
     }
 }

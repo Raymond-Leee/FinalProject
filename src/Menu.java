@@ -6,6 +6,7 @@ public class Menu {
         Player play = new Player("John");
         System.out.println(play.getInventoryInfo());
         System.out.println(play.getPlayerInfo());
+        play.save();
 
         /*
         Monster the = new Monster();

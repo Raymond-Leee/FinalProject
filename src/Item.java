@@ -14,7 +14,7 @@ public class Item {
                                             "Iron Armour",
                                             "Hunter Garments",
                                             "Exo-suit"};
-    private String[] armourDescriptions = new String[]{"It's heavy, but gets the job done.",
+    private String[] armourDescriptions = new String[]{"It's uncomfortable, but gets the job done.",
                                                        "Forged from the hottest of flames, it's underwhelmingly fragile.",
                                                        "A must have for any seasoned adventurer.",
                                                        "An outfit stolen from another hunter. Perhaps you should wash it.",
@@ -22,13 +22,11 @@ public class Item {
     private String[] items = new String[]{"Health Potion",
                                           "Instant Armour", 
                                           "Coffee",
-                                          "Glitch Potion",
                                           "Rare Quincy Action Figure",
                                           "Acid Flask"};
     private String[] itemDescriptions = new String[]{"Heals 20 health.",
                                                      "Grants 15 armour.",
-                                                     "Adds 1 energy..",
-                                                     "Will become a random item.",
+                                                     "Adds 1 energy.",
                                                      "It's worth a lot, but there's no shop around.",
                                                      "Attacks all monsters for 12 damage."};
     private String weapon;
