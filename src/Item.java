@@ -39,7 +39,7 @@ public class Item {
 
     public String getWeaponInfo(String weap) {
         for (int i = 0; i < weapons.length; i++) {
-            if (weap.equals(weapons[i])) {
+            if (weap.equalsIgnoreCase(weapons[i])) {
                 weapon += "Weapon: " + weapons[i] + "\n        " + weaponDescriptions[i] + "\n";
             }
         }
@@ -48,7 +48,7 @@ public class Item {
 
     public String getArmourInfo(String armo) {
         for (int i = 0; i < armours.length; i++) {
-            if (armo.equals(armours[i])) {
+            if (armo.equalsIgnoreCase(armours[i])) {
                 armour += "Armour: " + armours[i] + "\n        " + armourDescriptions[i] + "\n";
             }
         }
@@ -57,7 +57,7 @@ public class Item {
 
     public String getItemInfo(String it) {
         for (int i = 0; i < weapons.length; i++) {
-            if (it.equals(items[i])) {
+            if (it.equalsIgnoreCase(items[i])) {
                 return "Item: " + items[i] + "\n      " + itemDescriptions[i] + "\n";
             }
         }

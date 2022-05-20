@@ -1,12 +1,80 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.lang.Integer.valueOf;
 
 public class Menu {
     public static void main(String[] args) {
-        Scanner user = new Scanner(System.in);
-        Player play = new Player("John");
-        System.out.println(play.getInventoryInfo());
-        System.out.println(play.getPlayerInfo());
-        play.save();
+        try {
+            File f = new File("src/person.data");
+            Scanner s = new Scanner(f);
+            int line = 1;
+            String username = "";
+            String character = "";
+            int health = 0;
+            int attack = 0;
+            int armour = 0;
+            ArrayList<String> inventory = new ArrayList<String>();
+            // reading from the file line by line
+            while (s.hasNextLine()) {
+                String data = s.nextLine();
+                if (line == 1) {
+                    username = data;
+                }
+                if (line == 2) {
+                    character = data;
+                }
+                if (line == 3) {
+                    health = Integer.parseInt(data);
+                }
+                if (line == 4) {
+                    attack = Integer.parseInt(data);
+                }
+                if (line == 5) {
+                    armour  = Integer.parseInt(data);
+                }
+                if (line == 6) {
+                    inventory.add(data);
+                }
+                if (line == 7) {
+                    inventory.add(data);
+                }
+                if (line == 8) {
+                    inventory.add(data);
+                }
+                if (line == 9) {
+                    inventory.add(data);
+                }
+                if (line == 10) {
+                    inventory.add(data);
+                }
+                if (line == 11) {
+                    inventory.add(data);
+                }
+                if (line == 12) {
+                    inventory.add(data);
+                }
+                line++;
+            }
+            s.close();
+            Player play = new Player();
+            play.setUsername(username);
+            play.setCharacter(character);
+            play.setHealth(health);
+            play.setAttack(attack);
+            play.setArmour(armour);
+            play.setInventory(inventory);
+            System.out.println(play.getPlayerInfo());
+            System.out.println(play.getInventoryInfo());
+
+        }
+        // if the file doesn't exist, we will create a blank Person object and ask them for a name and hobby
+        catch (FileNotFoundException e) {
+            Player play = new Player();
+            System.out.println("Welcome!");
+        }
 
         /*
         Monster the = new Monster();
