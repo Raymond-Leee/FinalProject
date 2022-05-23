@@ -43,7 +43,7 @@ public class Menu {
                 if (line == 7) {
                     armourItem = data;
                 }
-                if (line == 9) {
+                if (line == 8) {
                     item = data;
                 }
                 line++;
