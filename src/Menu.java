@@ -67,6 +67,12 @@ public class Menu {
         catch (FileNotFoundException e) {
             Player play = new Player();
             System.out.println("Welcome!");
+            Scanner s = new Scanner(System.in);
+            String response = s.nextLine();
+            play.setWeapon("Real");
+            if (response.equalsIgnoreCase("Quit")) {
+                play.save();
+            }
         }
 
         /*
