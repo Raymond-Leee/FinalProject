@@ -13,6 +13,9 @@ public class Player {
                                                          "A protector of the illustrious Nilian Empire, the Knight specialises in hitting hard.",
                                                          "A mysterious outsider, the Traveller has braved the toughest of the environment."};
     private ArrayList<String> inventory;
+    private String weapon;
+    private String armourItem;
+    private String item;
     private int health;
     private int energy;
     private int armour;
@@ -22,9 +25,9 @@ public class Player {
         this.username = "";
         this.character = "";
         inventory = new ArrayList<String>();
-        inventory.add("Shoddy Sword");
-        inventory.add("Leather Garments");
-        inventory.add("Empty");
+        weapon = "Shoddy Sword";
+        armourItem = "Leather Garments";
+        item = "Empty";
     }
 
     public String getUsername() {
@@ -41,6 +44,30 @@ public class Player {
 
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public String getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(String weapon) {
+        this.weapon = weapon;
+    }
+
+    public String getArmourItem() {
+        return armourItem;
+    }
+
+    public void setArmourItem(String armourItem) {
+        this.armourItem = armourItem;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
     }
 
     public int getHealth() {
@@ -75,8 +102,10 @@ public class Player {
         this.attack = attack;
     }
 
-    public void setInventory(ArrayList<String> inventory) {
-        this.inventory = inventory;
+    public void setInventory() {
+        inventory.add(weapon);
+        inventory.add(armourItem);
+        inventory.add(item);
     }
 
     public String getInventoryInfo() {
@@ -106,15 +135,17 @@ public class Player {
 
     public void save() {
         try {
-            File f = new File("src/person.data");
+            File f = new File("src/player.data");
             f.createNewFile(); // this method will create the file if it does not exist, if it does exist, it does nothing
-            FileWriter fw = new FileWriter("src/person.data");
+            FileWriter fw = new FileWriter("src/player.data");
             fw.write(username);
             fw.write("\n" + character);
             fw.write("\n" + health);
             fw.write("\n" + armour);
             fw.write("\n" + attack);
-            fw.write("\n" + getInventoryInfo());
+            fw.write("\n" + weapon);
+            fw.write("\n" + armourItem);
+            fw.write("\n" + item);
             fw.close();
         }
         catch (IOException e) {

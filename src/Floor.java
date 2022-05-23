@@ -1,7 +1,6 @@
 public class Floor {
     private String floorName;
     private String description;
-    private int endRoomLocation;
 
     public Floor() {
         int num = (int) (Math.random() * 5) + 1;

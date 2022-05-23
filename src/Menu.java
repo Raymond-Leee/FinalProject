@@ -8,15 +8,17 @@ import static java.lang.Integer.valueOf;
 public class Menu {
     public static void main(String[] args) {
         try {
-            File f = new File("src/person.data");
+            File f = new File("src/player.data");
             Scanner s = new Scanner(f);
             int line = 1;
             String username = "";
             String character = "";
+            String weapon = "";
+            String armourItem = "";
+            String item = "";
             int health = 0;
             int attack = 0;
             int armour = 0;
-            ArrayList<String> inventory = new ArrayList<String>();
             // reading from the file line by line
             while (s.hasNextLine()) {
                 String data = s.nextLine();
@@ -33,28 +35,16 @@ public class Menu {
                     attack = Integer.parseInt(data);
                 }
                 if (line == 5) {
-                    armour  = Integer.parseInt(data);
+                    armour = Integer.parseInt(data);
                 }
                 if (line == 6) {
-                    inventory.add(data);
+                    weapon = data;
                 }
                 if (line == 7) {
-                    inventory.add(data);
-                }
-                if (line == 8) {
-                    inventory.add(data);
+                    armourItem = data;
                 }
                 if (line == 9) {
-                    inventory.add(data);
-                }
-                if (line == 10) {
-                    inventory.add(data);
-                }
-                if (line == 11) {
-                    inventory.add(data);
-                }
-                if (line == 12) {
-                    inventory.add(data);
+                    item = data;
                 }
                 line++;
             }
@@ -65,7 +55,10 @@ public class Menu {
             play.setHealth(health);
             play.setAttack(attack);
             play.setArmour(armour);
-            play.setInventory(inventory);
+            play.setWeapon(weapon);
+            play.setArmourItem(armourItem);
+            play.setItem(item);
+            play.setInventory();
             System.out.println(play.getPlayerInfo());
             System.out.println(play.getInventoryInfo());
 
