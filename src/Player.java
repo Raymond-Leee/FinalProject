@@ -112,9 +112,9 @@ public class Player {
     }
 
     public void setInventory() {
-        inventory[1] = weapon;
-        inventory[2] = armourItem;
-        inventory[3] = item;
+        inventory[0] = weapon;
+        inventory[1] = armourItem;
+        inventory[2] = item;
     }
 
     public String getInventoryInfo() {

@@ -64,6 +64,8 @@ public class RogueMenu {
             player.setItem(item);
             player.setInventory();
             System.out.println("Welcome back " + username + "!\nYou left off on " + floor);
+            System.out.println(player.getPlayerInfo());
+            System.out.println(player.getInventoryInfo());
         }
 
         catch (FileNotFoundException e) {
