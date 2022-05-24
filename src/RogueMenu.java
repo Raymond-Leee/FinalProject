@@ -1,11 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Integer.valueOf;
 
-public class Menu {
+public class RogueMenu {
     public static void main(String[] args) {
         try {
             File f = new File("src/player.data");
@@ -16,10 +15,11 @@ public class Menu {
             String weapon = "";
             String armourItem = "";
             String item = "";
+            String floor = "";
             int health = 0;
             int attack = 0;
             int armour = 0;
-            // reading from the file line by line
+
             while (s.hasNextLine()) {
                 String data = s.nextLine();
                 if (line == 1) {
@@ -46,32 +46,41 @@ public class Menu {
                 if (line == 8) {
                     item = data;
                 }
+                if (line == 9) {
+                    floor = data;
+                }
                 line++;
             }
-            s.close();
-            Player play = new Player();
-            play.setUsername(username);
-            play.setCharacter(character);
-            play.setHealth(health);
-            play.setAttack(attack);
-            play.setArmour(armour);
-            play.setWeapon(weapon);
-            play.setArmourItem(armourItem);
-            play.setItem(item);
-            play.setInventory();
-            System.out.println(play.getPlayerInfo());
-            System.out.println(play.getInventoryInfo());
 
+            s.close();
+            Player player = new Player();
+            player.setUsername(username);
+            player.setCharacter(character);
+            player.setHealth(health);
+            player.setAttack(attack);
+            player.setArmour(armour);
+            player.setWeapon(weapon);
+            player.setArmourItem(armourItem);
+            player.setItem(item);
+            player.setInventory();
+            System.out.println("Welcome back " + username + "!\nYou left off on " + floor);
         }
-        // if the file doesn't exist, we will create a blank Person object and ask them for a name and hobby
+
         catch (FileNotFoundException e) {
-            Player play = new Player();
-            System.out.println("Welcome!");
+            System.out.println("Welcome to !");
+            System.out.println("Would you like to play the game? Y/N");
             Scanner s = new Scanner(System.in);
             String response = s.nextLine();
-            play.setWeapon("Real");
-            if (response.equalsIgnoreCase("Quit")) {
-                play.save();
+            if (response.equalsIgnoreCase("Y")) {
+                System.out.print("Enter a name: ");
+                String name = s.nextLine();
+                System.out.println("Good luck " + name + "!");
+                Player player = new Player(name);
+                player.setCharacter("Knight");
+                player.save();
+            }
+            if (response.equalsIgnoreCase("N")) {
+                System.out.println("Goodbye then.");
             }
         }
 

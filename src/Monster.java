@@ -1,16 +1,16 @@
 import java.util.Arrays;
 
 public class Monster {
-    private String[] monster = new String[]{"Slime",
-                                            "Wolf",
-                                            "Skeleton",
-                                            "Goblin",
-                                            "Mummy",
-                                            "Ghoul",
-                                            "Stone Golem",
-                                            "Spider",
-                                            "Sand Worm",
-                                            "Hunter"};
+     private final String[] MONSTERS = new String[]{"Slime",
+                                                   "Wolf",
+                                                   "Skeleton",
+                                                   "Goblin",
+                                                   "Mummy",
+                                                   "Ghoul",
+                                                   "Stone Golem",
+                                                   "Spider",
+                                                   "Sand Worm",
+                                                   "Hunter"};
     private String monsterType;
     private String monsterTier; // Normal or Elite
     private int monsterHealth;
@@ -20,7 +20,7 @@ public class Monster {
     public Monster() {
         int num = (int) (Math.random() * 10);
         int tierDecide = (int) (Math.random() * 10);
-        monsterType = monster[num];
+        monsterType = MONSTERS[num];
         if (tierDecide > 7) {
             monsterTier = "Elite";
         }

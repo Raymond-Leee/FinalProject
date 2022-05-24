@@ -1,30 +1,39 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
-import java.util.ArrayList;
 
 public class Player {
     private String username;
     private String character;
-    private String[] characterList = new String[]{"Rogue",
-                                                  "Knight",
-                                                  "Traveller"};
-    private String[] characterDescription = new String[]{"A lone wolf, the Rogue can stay in battle for quiet a long time.",
-                                                         "A protector of the illustrious Nilian Empire, the Knight specialises in hitting hard.",
-                                                         "A mysterious outsider, the Traveller has braved the toughest of the environment."};
-    private ArrayList<String> inventory;
+    private final String[] CHARACTER_LIST = new String[]{"Rogue",
+                                                         "Knight",
+                                                         "Traveller"};
+    private final String[] CHARACTER_DESCRIPTION = new String[]{"A lone wolf, the Rogue can stay in battle for quiet a long time.",
+                                                                "A protector of the illustrious Nilian Empire, the Knight specialises in hitting hard.",
+                                                                "A mysterious outsider, the Traveller has braved the toughest of the environment."};
+    private String[] inventory;
     private String weapon;
     private String armourItem;
     private String item;
+    private String floor;
     private int health;
     private int energy;
     private int armour;
     private int attack;
 
     public Player() {
-        this.username = "";
-        this.character = "";
-        inventory = new ArrayList<String>();
+        username = "";
+        character = "";
+        inventory = new String[3];
+        weapon = "";
+        armourItem = "";
+        item = "";
+    }
+
+    public Player(String username) {
+        this.username = username;
+        character = "";
+        inventory = new String[3];
         weapon = "Shoddy Sword";
         armourItem = "Leather Garments";
         item = "Empty";
@@ -103,26 +112,32 @@ public class Player {
     }
 
     public void setInventory() {
-        inventory.add(weapon);
-        inventory.add(armourItem);
-        inventory.add(item);
+        inventory[1] = weapon;
+        inventory[2] = armourItem;
+        inventory[3] = item;
     }
 
     public String getInventoryInfo() {
-        Item item = new Item();
+        PlayerItem playerItem = new PlayerItem();
         String inv = "Inventory\n";
-        for (int i = 0; i < inventory.size(); i++) {
+        for (int i = 0; i < inventory.length; i++) {
             if (i == 0) {
-                inv += item.getWeaponInfo(inventory.get(i));
+                inv += playerItem.getWeaponInfo(inventory[i]);
             }
             else if (i == 1) {
-                inv += item.getArmourInfo(inventory.get(i));
+                inv += playerItem.getArmourInfo(inventory[i]);
             }
             else {
-                inv += item.getItemInfo(inventory.get(i));
+                inv += playerItem.getItemInfo(inventory[i]);
             }
         }
         return inv;
+    }
+
+    public String getFloor() {
+        Floor flo = new Floor();
+        floor = flo.getFloorName();
+        return floor;
     }
 
     public String getPlayerInfo() {
@@ -146,6 +161,7 @@ public class Player {
             fw.write("\n" + weapon);
             fw.write("\n" + armourItem);
             fw.write("\n" + item);
+            fw.write("\n" + floor);
             fw.close();
         }
         catch (IOException e) {

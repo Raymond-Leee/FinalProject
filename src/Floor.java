@@ -26,6 +26,10 @@ public class Floor {
         }
     }
 
+    public String getFloorName() {
+        return floorName;
+    }
+
     public String getFloorInfo() {
         return "You've reached " + floorName +
                "\n" + description;
