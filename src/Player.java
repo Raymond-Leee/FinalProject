@@ -9,7 +9,7 @@ public class Player {
                                                          "Knight",
                                                          "Traveller"};
     private final String[] CHARACTER_DESCRIPTION = new String[]{"A lone wolf, the Rogue can stay in battle for quiet a long time.",
-                                                                "A protector of the illustrious Nilian Empire, the Knight specialises in hitting hard.",
+                                                                "A protector of the illustrious Nilian Empire, the Knight has seen the worst of bloody conflicts.",
                                                                 "A mysterious outsider, the Traveller has braved the toughest of the environment."};
     private String[] inventory;
     private String weapon;
@@ -117,6 +117,10 @@ public class Player {
         inventory[2] = item;
     }
 
+    public void setSpecificInventory(int i, String str) {
+        inventory[i] = str;
+    }
+
     public String getInventoryInfo() {
         PlayerItem playerItem = new PlayerItem();
         String inv = "Inventory\n";
@@ -132,6 +136,14 @@ public class Player {
             }
         }
         return inv;
+    }
+
+    public String getCharacters() {
+        String characters = "";
+        for (int i = 0; i < CHARACTER_LIST.length; i++) {
+            characters += (i + 1) + ") " + CHARACTER_LIST[i] + "; " + CHARACTER_DESCRIPTION[i] + "\n";
+        }
+        return characters;
     }
 
     public String getFloor() {

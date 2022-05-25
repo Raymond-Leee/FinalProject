@@ -8,7 +8,7 @@ public class RogueMenu {
     public static void main(String[] args) {
         try {
             File f = new File("src/player.data");
-            Scanner s = new Scanner(f);
+            Scanner saveData = new Scanner(f);
             int line = 1;
             String username = "";
             String character = "";
@@ -20,8 +20,8 @@ public class RogueMenu {
             int attack = 0;
             int armour = 0;
 
-            while (s.hasNextLine()) {
-                String data = s.nextLine();
+            while (saveData.hasNextLine()) {
+                String data = saveData.nextLine();
                 if (line == 1) {
                     username = data;
                 }
@@ -52,36 +52,58 @@ public class RogueMenu {
                 line++;
             }
 
-            s.close();
-            Player player = new Player();
-            player.setUsername(username);
-            player.setCharacter(character);
-            player.setHealth(health);
-            player.setAttack(attack);
-            player.setArmour(armour);
-            player.setWeapon(weapon);
-            player.setArmourItem(armourItem);
-            player.setItem(item);
-            player.setInventory();
+            saveData.close();
+            Player saveFile = new Player();
+            Scanner s = new Scanner(System.in);
+            saveFile.setUsername(username);
+            saveFile.setCharacter(character);
+            saveFile.setHealth(health);
+            saveFile.setAttack(attack);
+            saveFile.setArmour(armour);
+            saveFile.setWeapon(weapon);
+            saveFile.setArmourItem(armourItem);
+            saveFile.setItem(item);
+            saveFile.setInventory();
             System.out.println("Welcome back " + username + "!\nYou left off on " + floor);
-            System.out.println(player.getPlayerInfo());
-            System.out.println(player.getInventoryInfo());
+            System.out.println("Would you like to (C)ontinue where you left off, or (R)estart?");
+            String menuChoice = s.nextLine();
+            while (!menuChoice.equalsIgnoreCase("C") && !menuChoice.equalsIgnoreCase("R")) {
+                System.out.println("Please enter C or R.");
+                menuChoice = s.nextLine();
+            }
+            if (menuChoice.equalsIgnoreCase("C")) {
+                Room r = new Room();
+                System.out.println("Good luck " + username + "!\n");
+                r.play(saveFile);
+            }
+            if (menuChoice.equalsIgnoreCase("R")) {
+                Room r = new Room();
+                System.out.print("Enter a name: ");
+                String name = s.nextLine();
+                System.out.println("Good luck " + name + "!\n");
+                Player newPlayer = new Player(name);
+                r.play(newPlayer);
+            }
         }
 
         catch (FileNotFoundException e) {
-            System.out.println("Welcome to !");
-            System.out.println("Would you like to play the game? Y/N");
+            System.out.println("Welcome to (Not) Rogue!");
+            System.out.println("Would you like to (P)lay or (Q)uit the game?");
             Scanner s = new Scanner(System.in);
-            String response = s.nextLine();
-            if (response.equalsIgnoreCase("Y")) {
+            String menuChoice = s.nextLine();
+            while (!menuChoice.equalsIgnoreCase("P") && !menuChoice.equalsIgnoreCase("Q")) {
+                System.out.println("Please enter P or Q.");
+                menuChoice = s.nextLine();
+            }
+            if (menuChoice.equalsIgnoreCase("P")) {
+                Room r = new Room();
                 System.out.print("Enter a name: ");
                 String name = s.nextLine();
-                System.out.println("Good luck " + name + "!");
+                System.out.println("Good luck " + name + "!\n");
                 Player player = new Player(name);
-                player.setCharacter("Knight");
-                player.save();
+                r.play(player);
             }
-            if (response.equalsIgnoreCase("N")) {
+            if (menuChoice.equalsIgnoreCase("Q")) {
                 System.out.println("Goodbye then.");
             }
         }
