@@ -5,9 +5,9 @@ import java.io.File;
 public class Player {
     private String username;
     private String character;
-    private final String[] CHARACTER_LIST = new String[]{"Rogue",
-                                                         "Knight",
-                                                         "Traveller"};
+    private final String[] CHARACTER_LIST = new String[]{"Rogue",       // 1 additional energy per turn
+                                                         "Knight",      // 5 additional attack
+                                                         "Traveller"};  // 10 additional health
     private final String[] CHARACTER_DESCRIPTION = new String[]{"A lone wolf, the Rogue can stay in battle for quiet a long time.",
                                                                 "A protector of the illustrious Nilian Empire, the Knight has seen the worst of bloody conflicts.",
                                                                 "A mysterious outsider, the Traveller has braved the toughest of the environment."};
@@ -25,6 +25,7 @@ public class Player {
         username = "";
         character = "";
         inventory = new String[3];
+        energy = 3;
         weapon = "";
         armourItem = "";
         item = "";
@@ -34,6 +35,7 @@ public class Player {
         this.username = username;
         character = "";
         inventory = new String[3];
+        energy = 3;
         weapon = "Shoddy Sword";
         armourItem = "Leather Garments";
         item = "Empty";
@@ -168,6 +170,7 @@ public class Player {
             fw.write(username);
             fw.write("\n" + character);
             fw.write("\n" + health);
+            fw.write("\n" + energy);
             fw.write("\n" + armour);
             fw.write("\n" + attack);
             fw.write("\n" + weapon);

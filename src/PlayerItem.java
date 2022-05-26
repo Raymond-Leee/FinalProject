@@ -1,19 +1,19 @@
 public class PlayerItem {
-    private final String[] WEAPONS = new String[]{"Shoddy Sword",
-                                                  "Iron Sword",
-                                                  "Iron Greatsword",
-                                                  "Steel Mace",
-                                                  "VT7 High-Frequency Blade"};
+    private final String[] WEAPONS = new String[]{"Shoddy Sword",               // 45%
+                                                  "Iron Sword",                 // 25%
+                                                  "Iron Greatsword",            // 20%
+                                                  "Steel Mace",                 // 9%
+                                                  "VT7 High-Frequency Blade"};  // 1%
     private final String[] WEAPON_DESCRIPTIONS = new String[]{"A poorly made wooden sword. Better than nothing.",
                                                               "An iron sword. Hits harder.",
                                                               "An iron greatsword. Be careful when swinging it.",
                                                               "A steel mace. Things are beginning to pick up.",
                                                               "A VT7 High-Frequency Blade. It'll cut through anything you can imagine."};
-    private final String[] ARMOURS = new String[]{"Leather Garments",
-                                                  "Chainmail Armour",
-                                                  "Iron Armour",
-                                                  "Hunter Garments",
-                                                  "Exo-suit"};
+    private final String[] ARMOURS = new String[]{"Leather Garments",  // 45%
+                                                  "Chainmail Armour",  // 25%
+                                                  "Iron Armour",       // 20%
+                                                  "Hunter Garments",   // 9%
+                                                  "Exo-suit"};         // 1%
     private final String[] ARMOUR_DESCRIPTIONS = new String[]{"It's uncomfortable, but gets the job done.",
                                                               "Forged from the hottest of flames, it's underwhelmingly fragile.",
                                                               "A must have for any seasoned adventurer.",
@@ -35,6 +35,19 @@ public class PlayerItem {
     public PlayerItem() {
         weapon = "";
         armour = "";
+    }
+
+    public String rollWeapon() {
+        int determineWeapon = (int) (Math.random() * 101);
+        if (determineWeapon > 99) {
+            weapon = WEAPONS[4];
+        }
+        else if (determineWeapon > 90) {
+            weapon = WEAPONS[3];
+        }
+        else if (determineWeapon > 70) {
+
+        }
     }
 
     public String getWeaponInfo(String weap) {

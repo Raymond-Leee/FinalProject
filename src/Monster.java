@@ -37,7 +37,6 @@ public class Monster {
             monsterArmour = 0;
             monsterAttack = 10;
         }
-        System.out.println(monsterTier + " " + monsterType + " appears before you!");
     }
 
     public void makeMove() {
@@ -78,6 +77,17 @@ public class Monster {
                 System.out.println(monsterTier + " " + monsterType + " gained an additional " + attack + " attack!" + "\n");
             }
         }
+    }
+
+    public String monsterAppears() {
+        String appear = "";
+        if (monsterTier.equals("Elite")) {
+            appear = "An " + monsterTier + " " + monsterType + " appears before you!";
+        }
+        else {
+            appear = "A " + monsterTier + " " + monsterType + " appears before you!";
+        }
+        return appear;
     }
 
     public String getMonsterInfo() {
