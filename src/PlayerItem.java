@@ -38,7 +38,7 @@ public class PlayerItem {
     }
 
     public String rollWeapon() {
-        int determineWeapon = (int) (Math.random() * 101);
+        int determineWeapon = (int) (Math.random() * 100) + 1;
         if (determineWeapon > 99) {
             weapon = WEAPONS[4];
         }
