@@ -9,7 +9,7 @@ public class Player {
                                                          "Knight",      // 5 additional attack
                                                          "Traveller"};  // 10 additional health
     private final String[] CHARACTER_DESCRIPTION = new String[]{"A lone wolf, the Rogue can stay in battle for quiet a long time.",
-                                                                "A protector of the illustrious Nilian Empire, the Knight has seen the worst of bloody conflicts.",
+                                                                "A protector of the illustrious Autrunian Empire, the Knight has seen the worst of bloody conflicts.",
                                                                 "A mysterious outsider, the Traveller has braved the toughest of the environment."};
     private String[] inventory;
     private String weapon;
@@ -20,6 +20,7 @@ public class Player {
     private int energy;
     private int armour;
     private int attack;
+    private int roomCount;
 
     public Player() {
         username = "";
@@ -29,6 +30,7 @@ public class Player {
         weapon = "";
         armourItem = "";
         item = "";
+        roomCount = 0;
     }
 
     public Player(String username) {
@@ -39,6 +41,7 @@ public class Player {
         weapon = "Shoddy Sword";
         armourItem = "Leather Garments";
         item = "Empty";
+        roomCount = 1;
     }
 
     public String getUsername() {
@@ -113,6 +116,14 @@ public class Player {
         this.attack = attack;
     }
 
+    public int getRoomCount() {
+        return roomCount;
+    }
+
+    public void setRoomCount(int roomCount) {
+        this.roomCount = roomCount;
+    }
+
     public void setInventory() {
         inventory[0] = weapon;
         inventory[1] = armourItem;
@@ -177,6 +188,7 @@ public class Player {
             fw.write("\n" + armourItem);
             fw.write("\n" + item);
             fw.write("\n" + floor);
+            fw.write("\n" + roomCount);
             fw.close();
         }
         catch (IOException e) {

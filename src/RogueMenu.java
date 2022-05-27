@@ -20,6 +20,7 @@ public class RogueMenu {
             int energy = 0;
             int attack = 0;
             int armour = 0;
+            int roomCount = 0;
 
             while (saveData.hasNextLine()) {
                 String data = saveData.nextLine();
@@ -53,6 +54,9 @@ public class RogueMenu {
                 if (line == 10) {
                     floor = data;
                 }
+                if (line == 11) {
+                    roomCount = Integer.parseInt(data);
+                }
                 line++;
             }
 
@@ -64,6 +68,7 @@ public class RogueMenu {
             saveFile.setHealth(health);
             saveFile.setEnergy(energy);
             saveFile.setAttack(attack);
+            saveFile.setRoomCount(roomCount);
             saveFile.setArmour(armour);
             saveFile.setWeapon(weapon);
             saveFile.setArmourItem(armourItem);
@@ -77,17 +82,17 @@ public class RogueMenu {
                 menuChoice = game.nextLine();
             }
             if (menuChoice.equalsIgnoreCase("C")) {
-                Room room = new Room();
+                Room room = new Room(saveFile);
                 System.out.println("Good luck " + username + "!\n");
-                room.play(saveFile);
+                room.play();
             }
             if (menuChoice.equalsIgnoreCase("R")) {
-                Room room = new Room();
                 System.out.print("Enter a name: ");
                 String name = game.nextLine();
                 System.out.println("Good luck " + name + "!\n");
                 Player newPlayer = new Player(name);
-                room.play(newPlayer);
+                Room room = new Room(newPlayer);
+                room.play();
             }
         }
 
@@ -101,12 +106,12 @@ public class RogueMenu {
                 menuChoice = newGame.nextLine();
             }
             if (menuChoice.equalsIgnoreCase("P")) {
-                Room room = new Room();
                 System.out.print("Enter a name: ");
                 String name = newGame.nextLine();
                 System.out.println("Good luck " + name + "!\n");
                 Player newPlayer = new Player(name);
-                room.play(newPlayer);
+                Room room = new Room(newPlayer);
+                room.play();
             }
             if (menuChoice.equalsIgnoreCase("Q")) {
                 System.out.println("Goodbye then.");
