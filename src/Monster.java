@@ -39,6 +39,10 @@ public class Monster {
         }
     }
 
+    public int getMonsterHealth() {
+        return monsterHealth;
+    }
+
     public void makeMove() {
         int num = (int) (Math.random() * 3) + 1;
         if (num == 1) {

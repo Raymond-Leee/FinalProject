@@ -52,7 +52,7 @@ public class Room {
                 }
             }
             else {
-                System.out.println("bruh");
+                quit = true;
             }
         }
         System.out.println("Saving your data. Goodbye.");
@@ -116,6 +116,9 @@ public class Room {
     public void fight() {
         Monster foe = new Monster();
         System.out.println(foe.monsterAppears());
+        while (player.getHealth() != 0 && foe.getMonsterHealth() != 0) {
+
+        }
     }
 
     public void find() {
