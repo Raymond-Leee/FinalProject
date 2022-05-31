@@ -10,6 +10,7 @@ public class Room {
     }
 
     public void play() {
+        Floor flo = new Floor();
         boolean quit = false;
         int roomCount = player.getRoomCount();
         Scanner choice = new Scanner(System.in);
@@ -28,7 +29,7 @@ public class Room {
         else if (player.getWeapon().equals("VT7 High-Frequency Blade")) {
             player.setAttack(35);
         }
-        if (player.getArmourItem().equals("Leather Garments")) {
+        else if (player.getArmourItem().equals("Leather Garments")) {
             player.setArmour(10);
         }
         else if (player.getArmourItem().equals("Chainmail Armour")) {
@@ -43,6 +44,7 @@ public class Room {
         else if (player.getArmourItem().equals("Exo-suit")) {
             player.setArmour(35);
         }
+
         if (player.getCharacter().equals("")) {
             System.out.println("Choose a character (1, 2, 3):");
             System.out.println(player.getCharacters());
@@ -54,30 +56,31 @@ public class Room {
             }
             if (characterInput == 1) {
                 player.setCharacter("Rogue");
-                System.out.println("You are now playing as a " + player.getCharacter());
+                System.out.println("You are now playing as a " + player.getCharacter() + "\n");
                 player.setEnergy(player.getEnergy() + 1);
             }
             else if (characterInput == 2) {
                 player.setCharacter("Knight");
-                System.out.println("You are now playing as a " + player.getCharacter());
+                System.out.println("You are now playing as a " + player.getCharacter() + "\n");
                 player.setAttack(player.getAttack() + 5);
             }
             else if (characterInput == 3) {
                 player.setCharacter("Traveller");
-                System.out.println("You are now playing as a " + player.getCharacter());
+                System.out.println("You are now playing as a " + player.getCharacter() + "\n");
                 player.setHealth(player.getHealth() + 10);
             }
         }
         while (!quit) {
+            Scanner move = new Scanner(System.in);
             if (roomCount == 1) {
                 System.out.println("You awaken in a dark room. You see entrances on all 4 sides.");
                 System.out.print("You can go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit: ");
-                String characterDecision = choice.nextLine();
+                String characterDecision = move.nextLine();
                 if (characterDecision.equalsIgnoreCase("Q")) {
                     quit = true;
                 }
                 else if (characterDecision.equalsIgnoreCase("C")) {
-                    System.out.println(player.getInventoryInfo());
+                    System.out.println("\n" + player.getInventoryInfo());
                 }
                 else {
                     move(characterDecision);
@@ -86,13 +89,13 @@ public class Room {
                 }
             }
             else {
-                System.out.print("You can go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit: ");
-                String characterDecision = choice.nextLine();
+                System.out.print("You can go (L)eft, (R)ight or (A)head, or you can (C)heck your inventory or (Q)uit: ");
+                String characterDecision = move.nextLine();
                 if (characterDecision.equalsIgnoreCase("Q")) {
                     quit = true;
                 }
                 else if (characterDecision.equalsIgnoreCase("C")) {
-                    System.out.println(player.getInventoryInfo());
+                    System.out.println("\n" + player.getInventoryInfo());
                 }
                 else {
                     move(characterDecision);
@@ -101,7 +104,7 @@ public class Room {
                 }
             }
         }
-        System.out.println("Saving your data. Goodbye.");
+        System.out.println("\nSaving your data. Goodbye.");
         player.save();
     }
 
@@ -109,61 +112,96 @@ public class Room {
         Scanner move = new Scanner(System.in);
         boolean fight = false;
         boolean findSomething = false;
-        int encounterChance = (int) (Math.random() * 0) + 1;
+        int encounterChance = (int) (Math.random() * 100) + 1;
         if (encounterChance > 60) {
             fight = true;
         }
         else if (encounterChance > 30) {
             findSomething = true;
         }
-        while (!input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("R") && !input.equalsIgnoreCase("A") && !input.equalsIgnoreCase("B") && !input.equalsIgnoreCase("C") && !input.equalsIgnoreCase("Q")) {
-            System.out.println("You can only go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit");
-            input = move.nextLine();
+        if (player.getRoomCount() == 1) {
+            while (!input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("R") && !input.equalsIgnoreCase("A") && !input.equalsIgnoreCase("B") && !input.equalsIgnoreCase("C") && !input.equalsIgnoreCase("Q")) {
+                System.out.print("\nYou can only go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit: ");
+                input = move.nextLine();
+            }
+            if (input.equalsIgnoreCase("L")) {
+                System.out.println("\nYou enter into the room to your left. The entrance closes behind you.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("R")) {
+                System.out.println("\nYou enter into the room to your right. The entrance closes behind you.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("A")) {
+                System.out.println("\nYou enter into the room ahead of you. The entrance closes behind you.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("B")) {
+                System.out.println("\nYou enter into the room behind you. The entrance closes behind you.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("C")) {
+                System.out.println("\n" + player.getInventoryInfo());
+            } else if (input.equalsIgnoreCase("Q")) {
+                System.out.println("\nSaving your data. Goodbye.");
+                player.setRoomCount(player.getRoomCount());
+                player.save();
+                System.exit(1);
+            }
         }
-        if (input.equalsIgnoreCase("L")) {
-            System.out.println("You enter into the room to your left.\n");
-            if (fight) {
-                fight();
+        else {
+            while (!input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("R") && !input.equalsIgnoreCase("A") && !input.equalsIgnoreCase("C") && !input.equalsIgnoreCase("Q")) {
+                System.out.print("\nYou can only go (L)eft, (R)ight or (A)head, or you can (C)heck your inventory or (Q)uit: ");
+                input = move.nextLine();
             }
-            if (findSomething) {
-                find();
+            if (input.equalsIgnoreCase("L")) {
+                System.out.println("\nYou enter into the room to your left. The entrance behind you closes.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("R")) {
+                System.out.println("\nYou enter into the room to your right. The entrance closes behind you.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("A")) {
+                System.out.println("\nYou enter into the room ahead of you. The entrance closes behind you.\n");
+                if (fight) {
+                    fight();
+                }
+                if (findSomething) {
+                    find();
+                }
+            } else if (input.equalsIgnoreCase("C")) {
+                System.out.println("\n" + player.getInventoryInfo());
+            } else if (input.equalsIgnoreCase("Q")) {
+                System.out.println("\nSaving your data. Goodbye.");
+                player.setRoomCount(player.getRoomCount());
+                player.save();
+                System.exit(1);
             }
-        }
-        else if (input.equalsIgnoreCase("R")) {
-            System.out.println("You enter into the room to your right.\n");
-            if (fight) {
-                fight();
-            }
-            if (findSomething) {
-                find();
-            }
-        }
-        else if (input.equalsIgnoreCase("A")) {
-            System.out.println("You enter into the room ahead of you.\n");
-            if (fight) {
-                fight();
-            }
-            if (findSomething) {
-                find();
-            }
-        }
-        else if (input.equalsIgnoreCase("B")) {
-            System.out.println("You enter into the room behind you.\n");
-            if (fight) {
-                fight();
-            }
-            if (findSomething) {
-                find();
-            }
-        }
-        else if (input.equalsIgnoreCase("C")) {
-            System.out.println(player.getInventoryInfo());
-        }
-        else if (input.equalsIgnoreCase("Q")) {
-            System.out.println("Saving your data. Goodbye.");
-            player.setRoomCount(player.getRoomCount());
-            player.save();
-            System.exit(1);
         }
     }
 
@@ -190,16 +228,17 @@ public class Room {
                 if (move.equalsIgnoreCase("A")) {
                     attack = baseAttack;
                     System.out.println("You attack for " + attack + " damage!");
+                    System.out.println(monsterArmour);
                     if (foe.getMonsterArmour() > 0) {
-                        foe.setMonsterArmour(monsterArmour - attack);
+                        foe.removeMonsterArmour(attack);
                         attack = monsterArmour - attack;
                         if (attack > 0) {
-                            foe.setMonsterHealth(monsterHealth - attack);
+                            foe.removeMonsterHealth(attack);
                             System.out.println(foe.getMonsterHealth());
                         }
                     }
                     else {
-                        foe.setMonsterHealth(monsterHealth - attack);
+                        foe.removeMonsterHealth(attack);
                         System.out.println(foe.getMonsterHealth());
                     }
                 }
@@ -208,14 +247,17 @@ public class Room {
                 }
                 energy--;
             }
+            if (foe.getMonsterHealth() <= 0) {
+                break;
+            }
             foe.makeMove(player);
             energy = baseEnergy;
         }
         if (player.getHealth() <= 0) {
-            System.out.println("You've lost. How unfortunate.");
+            System.out.println("You've lost. How unfortunate.\n");
         }
         else if (foe.getMonsterHealth() <= 0) {
-            System.out.println("You've beat the monster! Congratulations!");
+            System.out.println("You've beat the monster! Congratulations!\n");
         }
     }
 

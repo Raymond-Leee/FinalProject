@@ -25,7 +25,7 @@ public class Player {
         username = "";
         character = "";
         inventory = new String[2];
-        health = 100;
+        health = 0;
         energy = 3;
         weapon = "";
         armourItem = "";
@@ -36,11 +36,12 @@ public class Player {
         this.username = username;
         character = "";
         inventory = new String[2];
-        health = 0;
+        health = 100;
         energy = 3;
         weapon = "Shoddy Sword";
         armourItem = "Leather Garments";
         roomCount = 1;
+        setInventory();
     }
 
     public String getUsername() {

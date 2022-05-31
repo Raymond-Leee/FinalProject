@@ -43,6 +43,14 @@ public class Monster {
         return monsterHealth;
     }
 
+    public void removeMonsterHealth(int damage) {
+        monsterHealth = monsterHealth - damage;
+    }
+
+    public void removeMonsterArmour(int damage) {
+        monsterArmour = monsterArmour - damage;
+    }
+
     public void setMonsterHealth(int damage) {
         monsterHealth = damage;
     }
