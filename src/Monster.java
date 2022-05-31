@@ -43,13 +43,41 @@ public class Monster {
         return monsterHealth;
     }
 
-    public void makeMove() {
+    public void setMonsterHealth(int damage) {
+        monsterHealth = damage;
+    }
+
+    public int getMonsterAttack() {
+        return monsterAttack;
+    }
+
+    public int getMonsterArmour() {
+        return monsterArmour;
+    }
+
+    public void setMonsterArmour(int damage) {
+        monsterArmour = damage;
+    }
+
+    public void makeMove(Player player) {
         int num = (int) (Math.random() * 3) + 1;
         if (num == 1) {
             /* attack player
              * attack hits armour first, remaining attack hits player directly
              */
+            int playerArmour = player.getArmour();
+            int playerHealth = player.getHealth();
             System.out.println(monsterTier + " " + monsterType + " attacked for " + monsterAttack + " damage!" + "\n");
+            if (player.getArmour() > 0) {
+                player.setArmour(playerArmour - monsterAttack);
+                monsterAttack = playerArmour - monsterAttack;
+                if (monsterAttack > 0) {
+                    player.setHealth(playerHealth - monsterAttack);
+                }
+            }
+            else {
+                player.setHealth(playerHealth - monsterAttack);
+            }
         }
         if (num == 2) {
             /* block (+5 to +7 defence for normal / +8 to +10 defence for elite)

@@ -13,6 +13,36 @@ public class Room {
         boolean quit = false;
         int roomCount = player.getRoomCount();
         Scanner choice = new Scanner(System.in);
+        if (player.getWeapon().equals("Shoddy Sword")) {
+            player.setAttack(10);
+        }
+        else if (player.getWeapon().equals("Iron Sword")) {
+            player.setAttack(15);
+        }
+        else if (player.getWeapon().equals("Iron Greatsword")) {
+            player.setAttack(20);
+        }
+        else if (player.getWeapon().equals("Steel Dagger")) {
+            player.setAttack(25);
+        }
+        else if (player.getWeapon().equals("VT7 High-Frequency Blade")) {
+            player.setAttack(35);
+        }
+        if (player.getArmourItem().equals("Leather Garments")) {
+            player.setArmour(10);
+        }
+        else if (player.getArmourItem().equals("Chainmail Armour")) {
+            player.setArmour(15);
+        }
+        else if (player.getArmourItem().equals("Iron Armour")) {
+            player.setArmour(20);
+        }
+        else if (player.getArmourItem().equals("Hunter Garments")) {
+            player.setArmour(25);
+        }
+        else if (player.getArmourItem().equals("Exo-suit")) {
+            player.setArmour(35);
+        }
         if (player.getCharacter().equals("")) {
             System.out.println("Choose a character (1, 2, 3):");
             System.out.println(player.getCharacters());
@@ -41,22 +71,37 @@ public class Room {
         while (!quit) {
             if (roomCount == 1) {
                 System.out.println("You awaken in a dark room. You see entrances on all 4 sides.");
-                System.out.print("You can go (L)eft, (R)ight, (A)head or (B)ehind, or you can (Q)uit: ");
+                System.out.print("You can go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit: ");
                 String characterDecision = choice.nextLine();
                 if (characterDecision.equalsIgnoreCase("Q")) {
                     quit = true;
                 }
+                else if (characterDecision.equalsIgnoreCase("C")) {
+                    System.out.println(player.getInventoryInfo());
+                }
                 else {
                     move(characterDecision);
                     roomCount++;
+                    player.setRoomCount(roomCount);
                 }
             }
             else {
-                quit = true;
+                System.out.print("You can go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit: ");
+                String characterDecision = choice.nextLine();
+                if (characterDecision.equalsIgnoreCase("Q")) {
+                    quit = true;
+                }
+                else if (characterDecision.equalsIgnoreCase("C")) {
+                    System.out.println(player.getInventoryInfo());
+                }
+                else {
+                    move(characterDecision);
+                    roomCount++;
+                    player.setRoomCount(roomCount);
+                }
             }
         }
         System.out.println("Saving your data. Goodbye.");
-        player.setRoomCount(roomCount);
         player.save();
     }
 
@@ -64,19 +109,19 @@ public class Room {
         Scanner move = new Scanner(System.in);
         boolean fight = false;
         boolean findSomething = false;
-        int encounterChance = (int) (Math.random() * 100) + 1;
+        int encounterChance = (int) (Math.random() * 0) + 1;
         if (encounterChance > 60) {
             fight = true;
         }
         else if (encounterChance > 30) {
             findSomething = true;
         }
-        while (!input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("R") && !input.equalsIgnoreCase("A") && !input.equalsIgnoreCase("B")) {
-            System.out.println("You can only go (L)eft, (R)ight, (A)head, or (B)ehind.");
+        while (!input.equalsIgnoreCase("L") && !input.equalsIgnoreCase("R") && !input.equalsIgnoreCase("A") && !input.equalsIgnoreCase("B") && !input.equalsIgnoreCase("C") && !input.equalsIgnoreCase("Q")) {
+            System.out.println("You can only go (L)eft, (R)ight, (A)head or (B)ehind, or you can (C)heck your inventory or (Q)uit");
             input = move.nextLine();
         }
         if (input.equalsIgnoreCase("L")) {
-            System.out.println("You enter into the room to your left.");
+            System.out.println("You enter into the room to your left.\n");
             if (fight) {
                 fight();
             }
@@ -85,7 +130,7 @@ public class Room {
             }
         }
         else if (input.equalsIgnoreCase("R")) {
-            System.out.println("You enter into the room to your right.");
+            System.out.println("You enter into the room to your right.\n");
             if (fight) {
                 fight();
             }
@@ -94,7 +139,7 @@ public class Room {
             }
         }
         else if (input.equalsIgnoreCase("A")) {
-            System.out.println("You enter into the room ahead of you.");
+            System.out.println("You enter into the room ahead of you.\n");
             if (fight) {
                 fight();
             }
@@ -103,7 +148,7 @@ public class Room {
             }
         }
         else if (input.equalsIgnoreCase("B")) {
-            System.out.println("You enter into the room behind you.");
+            System.out.println("You enter into the room behind you.\n");
             if (fight) {
                 fight();
             }
@@ -111,20 +156,73 @@ public class Room {
                 find();
             }
         }
+        else if (input.equalsIgnoreCase("C")) {
+            System.out.println(player.getInventoryInfo());
+        }
+        else if (input.equalsIgnoreCase("Q")) {
+            System.out.println("Saving your data. Goodbye.");
+            player.setRoomCount(player.getRoomCount());
+            player.save();
+            System.exit(1);
+        }
     }
 
     public void fight() {
+        Scanner choice = new Scanner(System.in);
         Monster foe = new Monster();
         System.out.println(foe.monsterAppears());
+        int attack = player.getAttack();
+        int baseAttack = player.getAttack();
+        int energy = player.getEnergy();
+        int baseEnergy = player.getEnergy();
+        int monsterAttackBase = foe.getMonsterAttack();
+        int monsterArmourBase = foe.getMonsterArmour();
+        int monsterArmour = foe.getMonsterArmour();
+        int monsterHealth = foe.getMonsterHealth();
         while (player.getHealth() != 0 && foe.getMonsterHealth() != 0) {
-
+            while (energy > 0) {
+                System.out.print("You can (A)ttack or (B)lock: ");
+                String move = choice.nextLine();
+                while (!move.equalsIgnoreCase("A") && !move.equalsIgnoreCase("B")) {
+                    System.out.println("Please enter A or B.");
+                    move = choice.nextLine();
+                }
+                if (move.equalsIgnoreCase("A")) {
+                    attack = baseAttack;
+                    System.out.println("You attack for " + attack + " damage!");
+                    if (foe.getMonsterArmour() > 0) {
+                        foe.setMonsterArmour(monsterArmour - attack);
+                        attack = monsterArmour - attack;
+                        if (attack > 0) {
+                            foe.setMonsterHealth(monsterHealth - attack);
+                            System.out.println(foe.getMonsterHealth());
+                        }
+                    }
+                    else {
+                        foe.setMonsterHealth(monsterHealth - attack);
+                        System.out.println(foe.getMonsterHealth());
+                    }
+                }
+                else {
+                    System.out.println("You block for " + player.getArmour() + "!");
+                }
+                energy--;
+            }
+            foe.makeMove(player);
+            energy = baseEnergy;
+        }
+        if (player.getHealth() <= 0) {
+            System.out.println("You've lost. How unfortunate.");
+        }
+        else if (foe.getMonsterHealth() <= 0) {
+            System.out.println("You've beat the monster! Congratulations!");
         }
     }
 
     public void find() {
         Scanner choice = new Scanner(System.in);
         PlayerItem found = new PlayerItem();
-        int determineFind = (int) (Math.random() * 3) + 1;
+        int determineFind = (int) (Math.random() * 2) + 1;
         if (determineFind == 3) {
             String weaponFound = found.rollWeapon();
             System.out.println("You found " + weaponFound + "!");
@@ -154,23 +252,6 @@ public class Room {
             if (pickUp.equalsIgnoreCase("Y")) {
                 player.setArmourItem(armourFound);
                 System.out.println("You picked up the " + armourFound + ".");
-            }
-            else {
-                System.out.println("You left it behind and carried on.");
-            }
-        }
-        else {
-            String itemFound = found.rollItem();
-            System.out.println("You found " + itemFound + "!");
-            System.out.println("Would you like to pick it up? Y/N");
-            String pickUp = choice.nextLine();
-            while (!pickUp.equalsIgnoreCase("Y") && !pickUp.equalsIgnoreCase("N")) {
-                System.out.println("Please enter Y or N.");
-                pickUp = choice.nextLine();
-            }
-            if (pickUp.equalsIgnoreCase("Y")) {
-                player.setItem(itemFound);
-                System.out.println("You picked up the " + itemFound + ".");
             }
             else {
                 System.out.println("You left it behind and carried on.");

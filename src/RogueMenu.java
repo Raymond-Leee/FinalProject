@@ -14,7 +14,6 @@ public class RogueMenu {
             String character = "";
             String weapon = "";
             String armourItem = "";
-            String item = "";
             String floor = "";
             int health = 0;
             int energy = 0;
@@ -49,12 +48,9 @@ public class RogueMenu {
                     armourItem = data;
                 }
                 if (line == 9) {
-                    item = data;
-                }
-                if (line == 10) {
                     floor = data;
                 }
-                if (line == 11) {
+                if (line == 10) {
                     roomCount = Integer.parseInt(data);
                 }
                 line++;
@@ -72,9 +68,8 @@ public class RogueMenu {
             saveFile.setArmour(armour);
             saveFile.setWeapon(weapon);
             saveFile.setArmourItem(armourItem);
-            saveFile.setItem(item);
             saveFile.setInventory();
-            System.out.println("Welcome back " + username + "!\nYou left off on " + floor);
+            System.out.println("Welcome back " + username + "!\nYou left off on room " + roomCount + " of " + floor);
             System.out.println("Would you like to (C)ontinue where you left off, or (R)estart?");
             String menuChoice = game.nextLine();
             while (!menuChoice.equalsIgnoreCase("C") && !menuChoice.equalsIgnoreCase("R")) {

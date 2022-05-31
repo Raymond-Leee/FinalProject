@@ -19,24 +19,12 @@ public class PlayerItem {
                                                               "A must have for any seasoned adventurer.",
                                                               "An outfit stolen from another hunter. Perhaps you should wash it.",
                                                               "Cybernetic arm not included."};
-    private final String[] ITEMS = new String[]{"Health Potion",              // 20%
-                                                "Instant Armour",             // 20%
-                                                "Coffee",                     // 20%
-                                                "Rare Quincy Action Figure",  // 20%
-                                                "Acid Flask"};                // 20%
-    private final String[] ITEM_DESCRIPTIONS = new String[]{"Heals 20 health.",
-                                                            "Grants 15 armour.",
-                                                            "Adds 1 energy.",
-                                                            "It's worth a lot, but there's no shop around.",
-                                                            "Attacks all monsters for 12 damage."};
     private String weapon;
     private String armour;
-    private String item;
 
     public PlayerItem() {
         weapon = "";
         armour = "";
-        item = "";
     }
 
     public String rollWeapon() {
@@ -63,26 +51,16 @@ public class PlayerItem {
         int determineArmour = (int) (Math.random() * 100) + 1;
         if (determineArmour > 99) {
             armour = ARMOURS[4];
-        }
-        else if (determineArmour > 90) {
+        } else if (determineArmour > 90) {
             armour = ARMOURS[3];
-        }
-        else if (determineArmour > 70) {
+        } else if (determineArmour > 70) {
             armour = ARMOURS[2];
-        }
-        else if (determineArmour > 40) {
+        } else if (determineArmour > 40) {
             armour = ARMOURS[1];
-        }
-        else {
+        } else {
             armour = ARMOURS[0];
         }
         return armour;
-    }
-
-    public String rollItem() {
-        int determineItem = (int) (Math.random() * 5);
-        item = ITEMS[determineItem];
-        return item;
     }
 
     public String getWeaponInfo(String weap) {
@@ -101,14 +79,5 @@ public class PlayerItem {
             }
         }
         return armour;
-    }
-
-    public String getItemInfo(String it) {
-        for (int i = 0; i < ITEMS.length; i++) {
-            if (it.equalsIgnoreCase(ITEMS[i])) {
-                return "Item: " + ITEMS[i] + "\n      " + ITEM_DESCRIPTIONS[i] + "\n";
-            }
-        }
-        return "Item: Empty\n";
     }
 }

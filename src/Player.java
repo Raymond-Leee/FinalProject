@@ -14,7 +14,6 @@ public class Player {
     private String[] inventory;
     private String weapon;
     private String armourItem;
-    private String item;
     private String floor;
     private int health;
     private int energy;
@@ -25,22 +24,22 @@ public class Player {
     public Player() {
         username = "";
         character = "";
-        inventory = new String[3];
+        inventory = new String[2];
+        health = 100;
         energy = 3;
         weapon = "";
         armourItem = "";
-        item = "";
         roomCount = 0;
     }
 
     public Player(String username) {
         this.username = username;
         character = "";
-        inventory = new String[3];
+        inventory = new String[2];
+        health = 0;
         energy = 3;
         weapon = "Shoddy Sword";
         armourItem = "Leather Garments";
-        item = "Empty";
         roomCount = 1;
     }
 
@@ -74,14 +73,6 @@ public class Player {
 
     public void setArmourItem(String armourItem) {
         this.armourItem = armourItem;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
     }
 
     public int getHealth() {
@@ -127,7 +118,6 @@ public class Player {
     public void setInventory() {
         inventory[0] = weapon;
         inventory[1] = armourItem;
-        inventory[2] = item;
     }
 
     public void setSpecificInventory(int i, String str) {
@@ -137,17 +127,8 @@ public class Player {
     public String getInventoryInfo() {
         PlayerItem playerItem = new PlayerItem();
         String inv = "Inventory\n";
-        for (int i = 0; i < inventory.length; i++) {
-            if (i == 0) {
-                inv += playerItem.getWeaponInfo(inventory[i]);
-            }
-            else if (i == 1) {
-                inv += playerItem.getArmourInfo(inventory[i]);
-            }
-            else {
-                inv += playerItem.getItemInfo(inventory[i]);
-            }
-        }
+        inv += playerItem.getWeaponInfo(inventory[0]);
+        inv += playerItem.getArmourInfo(inventory[1]);
         return inv;
     }
 
@@ -186,7 +167,6 @@ public class Player {
             fw.write("\n" + attack);
             fw.write("\n" + weapon);
             fw.write("\n" + armourItem);
-            fw.write("\n" + item);
             fw.write("\n" + floor);
             fw.write("\n" + roomCount);
             fw.close();
