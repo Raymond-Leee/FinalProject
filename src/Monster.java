@@ -28,12 +28,12 @@ public class Monster {
             monsterTier = "Normal";
         }
         if (monsterTier.equals("Elite")) {
-            monsterHealth = 150;
-            monsterArmour = 10;
+            monsterHealth = 250;
+            monsterArmour = 15;
             monsterAttack = 15;
         }
         else {
-            monsterHealth = 100;
+            monsterHealth = 200;
             monsterArmour = 0;
             monsterAttack = 10;
         }

@@ -57,6 +57,7 @@ public class RogueMenu {
             }
 
             saveData.close();
+            Floor flo;
             Player saveFile = new Player();
             Scanner game = new Scanner(System.in);
             saveFile.setUsername(username);
@@ -64,20 +65,20 @@ public class RogueMenu {
             saveFile.setHealth(health);
             saveFile.setEnergy(energy);
             saveFile.setAttack(attack);
-            saveFile.setRoomCount(roomCount);
             saveFile.setArmour(armour);
             saveFile.setWeapon(weapon);
             saveFile.setArmourItem(armourItem);
+            saveFile.setRoomCount(roomCount);
             saveFile.setInventory();
             System.out.println("Welcome back " + username + "!\nYou left off on room " + roomCount + " of " + floor);
-            System.out.println("Would you like to (C)ontinue where you left off, or (R)estart?");
+            System.out.print("Would you like to (C)ontinue where you left off, or (R)estart: ");
             String menuChoice = game.nextLine();
             while (!menuChoice.equalsIgnoreCase("C") && !menuChoice.equalsIgnoreCase("R")) {
-                System.out.println("Please enter C or R.");
+                System.out.print("Please enter C or R: ");
                 menuChoice = game.nextLine();
             }
             if (menuChoice.equalsIgnoreCase("C")) {
-                Room room = new Room(saveFile);
+                Room room = new Room(saveFile, floor);
                 System.out.println("Good luck " + username + "!\n");
                 room.play();
             }
@@ -93,11 +94,11 @@ public class RogueMenu {
 
         catch (FileNotFoundException e) {
             System.out.println("Welcome to (Not) Rogue!");
-            System.out.println("Would you like to (P)lay or (Q)uit the game?");
+            System.out.print("Would you like to (P)lay or (Q)uit the game: ");
             Scanner newGame = new Scanner(System.in);
             String menuChoice = newGame.nextLine();
             while (!menuChoice.equalsIgnoreCase("P") && !menuChoice.equalsIgnoreCase("Q")) {
-                System.out.println("Please enter P or Q.");
+                System.out.print("Please enter P or Q: ");
                 menuChoice = newGame.nextLine();
             }
             if (menuChoice.equalsIgnoreCase("P")) {

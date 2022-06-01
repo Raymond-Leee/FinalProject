@@ -141,8 +141,7 @@ public class Player {
         return characters;
     }
 
-    public String getFloor() {
-        Floor flo = new Floor();
+    public String getFloor(Floor flo) {
         floor = flo.getFloorName();
         return floor;
     }
@@ -164,8 +163,8 @@ public class Player {
             fw.write("\n" + character);
             fw.write("\n" + health);
             fw.write("\n" + energy);
-            fw.write("\n" + armour);
             fw.write("\n" + attack);
+            fw.write("\n" + armour);
             fw.write("\n" + weapon);
             fw.write("\n" + armourItem);
             fw.write("\n" + floor);
