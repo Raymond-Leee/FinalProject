@@ -11,9 +11,9 @@ public class Room {
         flo = new Floor();
     }
 
-    public Room(Player player, Floor flo) {
+    public Room(Player player, String floor) {
         this.player = player;
-        this.flo = flo;
+        flo = new Floor(floor);
     }
 
     public void play() {
@@ -99,7 +99,7 @@ public class Room {
         Scanner move = new Scanner(System.in);
         boolean fight = false;
         boolean findSomething = false;
-        int encounterChance = (int) (Math.random() * 50) + 1;
+        int encounterChance = (int) (Math.random() * 100) + 1;
         if (encounterChance > 60) {
             fight = true;
         }

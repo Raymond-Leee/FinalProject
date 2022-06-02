@@ -6,7 +6,7 @@ public class Player {
     private String username;
     private String character;
     private final String[] CHARACTER_LIST = new String[]{"Rogue",       // 1 additional energy per turn
-                                                         "Knight",      // 5 additional attack
+                                                         "Knight",      // 7 additional attack
                                                          "Traveller"};  // 10 additional health
     private final String[] CHARACTER_DESCRIPTION = new String[]{"A lone wolf, the Rogue can stay in battle for quiet a long time.",
                                                                 "A protector of the illustrious Autrunian Empire, the Knight has seen the worst of bloody conflicts.",

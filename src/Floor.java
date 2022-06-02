@@ -33,7 +33,6 @@ public class Floor {
 
     public Floor(String floor) {
         floorName = floor;
-        description =
     }
 
     public String getFloorName() {
