@@ -202,6 +202,7 @@ public class Room {
         Scanner choice = new Scanner(System.in);
         Monster foe = new Monster();
         System.out.println(foe.monsterAppears());
+        boolean run = false;
         int attack = player.getAttack();
         int baseAttack = player.getAttack();
         int energy = player.getEnergy();
@@ -212,10 +213,10 @@ public class Room {
         int monsterHealth = foe.getMonsterHealth();
         while (player.getHealth() != 0 && foe.getMonsterHealth() != 0) {
             while (energy > 0) {
-                System.out.print("You can (A)ttack or (B)lock: ");
+                System.out.print("You can (A)ttack or (R)un: ");
                 String move = choice.nextLine();
-                while (!move.equalsIgnoreCase("A") && !move.equalsIgnoreCase("B")) {
-                    System.out.print("Please enter A or B: ");
+                while (!move.equalsIgnoreCase("A") && !move.equalsIgnoreCase("R")) {
+                    System.out.print("Please enter A or R: ");
                     move = choice.nextLine();
                 }
                 if (move.equalsIgnoreCase("A")) {
@@ -236,11 +237,16 @@ public class Room {
                     }
                 }
                 else {
-                    System.out.println("You block for " + player.getArmour() + "!\n");
+                    System.out.println("The monster hits you, but you manage to run away like a coward.\n");
+                    player.setHealth(player.getHealth() - 10);
+                    run = true;
+                }
+                if (run) {
+                    break;
                 }
                 energy--;
             }
-            if (foe.getMonsterHealth() <= 0) {
+            if (foe.getMonsterHealth() <= 0 || run) {
                 break;
             }
             foe.makeMove(player);

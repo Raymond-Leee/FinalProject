@@ -77,7 +77,6 @@ public class Monster {
             int playerHealth = player.getHealth();
             System.out.println(monsterTier + " " + monsterType + " attacked for " + monsterAttack + " damage!" + "\n");
             if (player.getArmour() > 0) {
-                player.setArmour(playerArmour - monsterAttack);
                 monsterAttack = playerArmour - monsterAttack;
                 if (monsterAttack > 0) {
                     player.setHealth(playerHealth - monsterAttack);
