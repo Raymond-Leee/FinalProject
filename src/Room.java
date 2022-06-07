@@ -207,10 +207,7 @@ public class Room {
         int baseAttack = player.getAttack();
         int energy = player.getEnergy();
         int baseEnergy = player.getEnergy();
-        int monsterAttackBase = foe.getMonsterAttack();
-        int monsterArmourBase = foe.getMonsterArmour();
-        int monsterArmour = foe.getMonsterArmour();
-        int monsterHealth = foe.getMonsterHealth();
+        int monsterBaseArmour = foe.getMonsterArmour();
         while (player.getHealth() != 0 && foe.getMonsterHealth() != 0) {
             while (energy > 0) {
                 System.out.print("You can (A)ttack or (R)un: ");
@@ -221,19 +218,20 @@ public class Room {
                 }
                 if (move.equalsIgnoreCase("A")) {
                     attack = baseAttack;
-                    System.out.println("You attack for " + attack + " damage!\n");
-                    System.out.println(monsterArmour);
                     if (foe.getMonsterArmour() > 0) {
-                        foe.removeMonsterArmour(attack);
-                        attack = monsterArmour - attack;
+                        System.out.println("You hit its armour for " + attack + " damage!");
+                        attack = monsterBaseArmour - attack;
+                        foe.setMonsterArmour(0);
                         if (attack > 0) {
                             foe.removeMonsterHealth(attack);
-                            System.out.println(foe.getMonsterHealth());
+                            System.out.println("You hit the monster for " + attack + " damage!");
+                            System.out.println("The monster has " + foe.getMonsterHealth() + " health left.\n");
                         }
                     }
                     else {
                         foe.removeMonsterHealth(attack);
-                        System.out.println(foe.getMonsterHealth());
+                        System.out.println("You hit the monster for " + attack + " damage!");
+                        System.out.println("The monster has " + foe.getMonsterHealth() + " health left.\n");
                     }
                 }
                 else {

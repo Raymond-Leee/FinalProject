@@ -88,7 +88,6 @@ public class Monster {
         }
         if (num == 2) {
             /* block (+5 to +7 defence for normal / +8 to +10 defence for elite)
-             * block resets to base value at the start of a new turn
              */
             if (monsterTier.equals("Elite")) {
                 int block = (int) (Math.random() * 3) + 8;
@@ -103,7 +102,6 @@ public class Monster {
         }
         if (num == 3) {
             /* charge attack (+2 to +4 damage for normal / +5 to +7 damage for elite)
-             * attack resets to base value at the start of a new turn
              */
             if (monsterTier.equals("Elite")) {
                 int attack = (int) (Math.random() * 3) + 5;
